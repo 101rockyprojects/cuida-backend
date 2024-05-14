@@ -793,7 +793,7 @@ export interface ApiAnimalAnimal extends Schema.CollectionType {
   info: {
     singularName: 'animal';
     pluralName: 'animales';
-    displayName: 'Animal';
+    displayName: 'Animales';
   };
   options: {
     draftAndPublish: true;
@@ -861,7 +861,7 @@ export interface ApiNecesidadNecesidad extends Schema.CollectionType {
   info: {
     singularName: 'necesidad';
     pluralName: 'necesidades';
-    displayName: 'Necesidad';
+    displayName: 'Necesidades';
   };
   options: {
     draftAndPublish: true;
