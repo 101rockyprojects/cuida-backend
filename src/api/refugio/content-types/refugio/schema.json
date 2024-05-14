@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "refugios",
+  "info": {
+    "singularName": "refugio",
+    "pluralName": "refugios",
+    "displayName": "Refugio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^[a-zA-Z\\s.]*$",
+      "maxLength": 80
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nombre"
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "maxLength": 550
+    },
+    "direccion": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "fecha_fundacion": {
+      "type": "date",
+      "required": true,
+      "private": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "fotos": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "link_facebook": {
+      "type": "string",
+      "unique": true
+    },
+    "link_instagram": {
+      "type": "string",
+      "unique": true
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "representante": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::representante.representante",
+      "mappedBy": "refugio"
+    },
+    "necesidades": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::necesidad.necesidad",
+      "mappedBy": "refugio"
+    }
+  }
+}

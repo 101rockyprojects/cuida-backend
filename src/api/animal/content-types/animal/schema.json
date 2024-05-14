@@ -1,0 +1,103 @@
+{
+  "kind": "collectionType",
+  "collectionName": "animales",
+  "info": {
+    "singularName": "animal",
+    "pluralName": "animales",
+    "displayName": "Animal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50,
+      "regex": "^[a-zA-Z\\s.]*$"
+    },
+    "slug": {
+      "type": "uid",
+      "required": false,
+      "targetField": "nombre"
+    },
+    "sexo": {
+      "type": "enumeration",
+      "enum": [
+        "Masculino",
+        "Femenino"
+      ],
+      "required": true
+    },
+    "especie": {
+      "type": "enumeration",
+      "enum": [
+        "Perro",
+        "Gato"
+      ],
+      "required": true
+    },
+    "peso": {
+      "type": "decimal",
+      "required": true
+    },
+    "personalidad": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "historia": {
+      "type": "text",
+      "required": false,
+      "maxLength": 500
+    },
+    "fecha_ingreso": {
+      "type": "date",
+      "required": false
+    },
+    "esterilizado": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "fotos": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "edad": {
+      "type": "integer",
+      "required": false
+    },
+    "padecimiento": {
+      "type": "enumeration",
+      "enum": [
+        "Ninguno",
+        "Desnutrición",
+        "Parásitos internos",
+        "Parásitos externos",
+        "Enfermedades respiratorias",
+        "Problemas de piel",
+        "Problemas dentales",
+        "Traumas físicos",
+        "Enfermedades crónicas"
+      ],
+      "default": "Ninguno"
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": [
+        "Cuidando",
+        "Hospitalizado",
+        "Adoptado"
+      ]
+    },
+    "activo": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

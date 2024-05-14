@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "necesidades",
+  "info": {
+    "singularName": "necesidad",
+    "pluralName": "necesidades",
+    "displayName": "Necesidad"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "Alimento",
+        "Medicamento",
+        "Cirugía"
+      ],
+      "required": true
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "maxLength": 100
+    },
+    "meta_dinero": {
+      "type": "biginteger",
+      "required": true,
+      "min": "10000",
+      "max": "100000000"
+    },
+    "documento_soporte": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": [
+        "Activa",
+        "Satisfecha",
+        "Inactiva"
+      ]
+    },
+    "refugio": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::refugio.refugio",
+      "inversedBy": "necesidades"
+    }
+  }
+}
