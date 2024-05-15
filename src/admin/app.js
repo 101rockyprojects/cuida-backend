@@ -27,6 +27,24 @@ const config = {
     // 'zh-Hans',
     // 'zh',
   ],
+  theme: {
+    light: {
+      colors: {
+        primary100: '#404040',  // Selected
+        primary600: '#F18A41', // Text Selected Left Menu
+        buttonPrimary600: '#EE7015', // Button
+      }
+    },
+    dark: {
+      colors: {
+        neutral0: '#202024', // Card
+        neutral100: '#2B2B2F',  // Background
+        primary100: '#404040',  // Selected
+        primary600: '#F18A41', // Text Selected Left Menu
+        buttonPrimary600: '#EE7015', // Button
+      }
+    }
+  },
   translations: {
     es: {
       'app.components.LeftMenu.navbrand.title': 'Cuida',
