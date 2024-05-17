@@ -55,6 +55,7 @@ const config = {
       "global.marketplace": "Tienda de plugins",
       "cloud.plugin.name": "Strapi Cloud",
       "app.components.LeftMenu.navbrand.workplace": "Panel de administración",
+      "content-manager.api.id": "Tipo de contenido",
       "global.select-all-entries": "Selecionar todos los elementos",
       "New entry": "Nuevo elemento",
       "Settings.apiTokens.create": "Añadir elemento",
@@ -67,10 +68,13 @@ const config = {
       "content-manager.form.Input.pageEntries": "{ContentType}s por página",
       "content-manager.pages.ListView.header-subtitle": "{number, plural, =0 {# elementos encontrados} one {# elemento encontrado} other {# elementos encontrados}}",
       "content-manager.utils.data-loaded": "{number, plural, =1 {Cargado correctamente} other {Cargados correctamente}}",
-      "content-manager.components.LeftMenu.collection-types": "Tipos de contenido",
+      "content-manager.header.name": "Mi contenido",
+      "content-manager.components.LeftMenu.collection-types": "Mi información",
       "app.components.EmptyStateLayout.content-document": "No se encontraron elementos aún. ¡Da el primer paso!",
       "Auth.form.welcome.title": "¡Bienvenido a Cuida!",
       "Auth.form.welcome.subtitle": "Inicia sesión y empieza a administrar tu refugio.",
+      "app.components.ToggleCheckbox.off-label": "Falso",
+      "app.components.ToggleCheckbox.on-label": "Verdadero"
     },
   },
 };
