@@ -590,6 +590,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -741,59 +788,12 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiAnimalAnimal extends Schema.CollectionType {
   collectionName: 'animales';
   info: {
     singularName: 'animal';
     pluralName: 'animales';
-    displayName: 'Animales';
+    displayName: 'Mis mascotas';
   };
   options: {
     draftAndPublish: true;
@@ -861,7 +861,7 @@ export interface ApiNecesidadNecesidad extends Schema.CollectionType {
   info: {
     singularName: 'necesidad';
     pluralName: 'necesidades';
-    displayName: 'Necesidades';
+    displayName: 'Mis Necesidades';
   };
   options: {
     draftAndPublish: true;
@@ -918,7 +918,7 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
   info: {
     singularName: 'refugio';
     pluralName: 'refugios';
-    displayName: 'Refugio';
+    displayName: 'Mi Refugio';
   };
   options: {
     draftAndPublish: true;
@@ -931,6 +931,12 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
         maxLength: 80;
       }>;
     slug: Attribute.UID<'api::refugio.refugio', 'nombre'>;
+    servicios: Attribute.JSON &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        ['Rescate', 'Sanaci\u00F3n', 'Vacunaci\u00F3n', 'Esterilizaci\u00F3n']
+      >;
     descripcion: Attribute.Text &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -940,9 +946,21 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
     fecha_fundacion: Attribute.Date & Attribute.Required & Attribute.Private;
     logo: Attribute.Media & Attribute.Required;
     fotos: Attribute.Media;
+    nequi: Attribute.String &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 10;
+      }>;
+    daviplata: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 10;
+      }>;
+    paypal: Attribute.String & Attribute.Unique;
     link_facebook: Attribute.String & Attribute.Unique;
     link_instagram: Attribute.String & Attribute.Unique;
-    activo: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    activo: Attribute.Boolean & Attribute.DefaultTo<true>;
     representante: Attribute.Relation<
       'api::refugio.refugio',
       'oneToOne',
@@ -988,6 +1006,14 @@ export interface ApiRepresentanteRepresentante extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 80;
       }>;
+    tipo_documento: Attribute.Enumeration<
+      [
+        '(CC) C\u00E9dula de ciudadan\u00EDa',
+        '(CE) C\u00E9dula de extranjer\u00EDa',
+        '(NI) N\u00FAmero de Identificaci\u00F3n Tributaria'
+      ]
+    > &
+      Attribute.Required;
     documento_identidad: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
@@ -1006,10 +1032,15 @@ export interface ApiRepresentanteRepresentante extends Schema.CollectionType {
       'oneToOne',
       'api::refugio.refugio'
     >;
-    usuario: Attribute.Relation<
+    email: Attribute.Relation<
       'api::representante.representante',
       'oneToOne',
       'admin::user'
+    >;
+    usuario: Attribute.Relation<
+      'api::representante.representante',
+      'oneToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1043,10 +1074,10 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
       'api::animal.animal': ApiAnimalAnimal;
       'api::necesidad.necesidad': ApiNecesidadNecesidad;
       'api::refugio.refugio': ApiRefugioRefugio;

@@ -18,6 +18,15 @@
       "regex": "^[a-zA-Z\\s]*$",
       "maxLength": 80
     },
+    "tipo_documento": {
+      "type": "enumeration",
+      "enum": [
+        "(CC) Cédula de ciudadanía",
+        "(CE) Cédula de extranjería",
+        "(NI) Número de Identificación Tributaria"
+      ],
+      "required": true
+    },
     "documento_identidad": {
       "type": "string",
       "required": true,
@@ -31,17 +40,23 @@
       "maxLength": 10,
       "minLength": 10,
       "unique": true,
-      "regex": "^[0-9]+$"
+      "regex": "3[0-9]{9}"
     },
     "refugio": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::refugio.refugio"
+      "target": "api::refugio.refugio",
+      "inversedBy": "representante"
+    },
+    "email": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
     },
     "usuario": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "admin::user"
+      "target": "plugin::users-permissions.user"
     }
   }
 }

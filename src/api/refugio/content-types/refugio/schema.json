@@ -4,7 +4,7 @@
   "info": {
     "singularName": "refugio",
     "pluralName": "refugios",
-    "displayName": "Refugio"
+    "displayName": "Mi Refugio"
   },
   "options": {
     "draftAndPublish": true
@@ -21,6 +21,17 @@
     "slug": {
       "type": "uid",
       "targetField": "nombre"
+    },
+    "servicios": {
+      "type": "customField",
+      "options": [
+        "Rescate",
+        "Sanación",
+        "Vacunación",
+        "Esterilización"
+      ],
+      "required": true,
+      "customField": "plugin::multi-select.multi-select"
     },
     "descripcion": {
       "type": "text",
@@ -53,6 +64,25 @@
         "images"
       ]
     },
+    "nequi": {
+      "type": "string",
+      "required": false,
+      "unique": true,
+      "regex": "3[0-9]{9}",
+      "maxLength": 10,
+      "minLength": 10
+    },
+    "daviplata": {
+      "type": "string",
+      "regex": "3[0-9]{9}",
+      "maxLength": 10,
+      "minLength": 10
+    },
+    "paypal": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
     "link_facebook": {
       "type": "string",
       "unique": true
@@ -63,8 +93,7 @@
     },
     "activo": {
       "type": "boolean",
-      "default": true,
-      "required": true
+      "default": true
     },
     "representante": {
       "type": "relation",
