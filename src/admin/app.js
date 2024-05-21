@@ -30,7 +30,7 @@ const config = {
   theme: {
     light: {
       colors: {
-        primary100: '#404040',  // Selected
+        primary100: '#F4E8E2',  // Selected
         primary600: '#F18A41', // Text Selected Left Menu
         buttonPrimary600: '#EE7015', // Button
       }
@@ -39,9 +39,9 @@ const config = {
       colors: {
         neutral0: '#202024', // Card
         neutral100: '#2B2B2F',  // Background
-        primary100: '#404040',  // Selected
+        primary100: '#423E4B',  // Selected
         primary600: '#F18A41', // Text Selected Left Menu
-        buttonPrimary600: '#EE7015', // Button
+        buttonPrimary500: '#F18A41', // Button
       }
     }
   },

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "refugio",
     "pluralName": "refugios",
-    "displayName": "Mi Refugio"
+    "displayName": "Refugio"
   },
   "options": {
     "draftAndPublish": true
@@ -105,6 +105,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::necesidad.necesidad",
+      "mappedBy": "refugio"
+    },
+    "mascotas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::animal.animal",
       "mappedBy": "refugio"
     }
   }

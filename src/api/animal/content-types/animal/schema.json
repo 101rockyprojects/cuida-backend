@@ -4,7 +4,8 @@
   "info": {
     "singularName": "animal",
     "pluralName": "animales",
-    "displayName": "Mis mascotas"
+    "displayName": "Mascotas",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -72,21 +73,6 @@
       "type": "integer",
       "required": false
     },
-    "padecimiento": {
-      "type": "enumeration",
-      "enum": [
-        "Ninguno",
-        "Desnutrición",
-        "Parásitos internos",
-        "Parásitos externos",
-        "Enfermedades respiratorias",
-        "Problemas de piel",
-        "Problemas dentales",
-        "Traumas físicos",
-        "Enfermedades crónicas"
-      ],
-      "default": "Ninguno"
-    },
     "estado": {
       "type": "enumeration",
       "enum": [
@@ -98,6 +84,27 @@
     "activo": {
       "type": "boolean",
       "default": true
+    },
+    "refugio": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::refugio.refugio",
+      "inversedBy": "mascotas"
+    },
+    "padecimientos": {
+      "type": "customField",
+      "options": [
+        "Desnutrición",
+        "Parásitos internos",
+        "Parásitos externos",
+        "Enfermedades respiratorias",
+        "Problemas de piel",
+        "Problemas dentales",
+        "Traumas físicos",
+        "Enfermedades crónicas"
+      ],
+      "required": false,
+      "customField": "plugin::multi-select.multi-select"
     }
   }
 }

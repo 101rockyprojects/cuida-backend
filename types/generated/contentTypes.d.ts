@@ -793,7 +793,8 @@ export interface ApiAnimalAnimal extends Schema.CollectionType {
   info: {
     singularName: 'animal';
     pluralName: 'animales';
-    displayName: 'Mis mascotas';
+    displayName: 'Mascotas';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -822,22 +823,27 @@ export interface ApiAnimalAnimal extends Schema.CollectionType {
       Attribute.DefaultTo<true>;
     fotos: Attribute.Media & Attribute.Required;
     edad: Attribute.Integer;
-    padecimiento: Attribute.Enumeration<
-      [
-        'Ninguno',
-        'Desnutrici\u00F3n',
-        'Par\u00E1sitos internos',
-        'Par\u00E1sitos externos',
-        'Enfermedades respiratorias',
-        'Problemas de piel',
-        'Problemas dentales',
-        'Traumas f\u00EDsicos',
-        'Enfermedades cr\u00F3nicas'
-      ]
-    > &
-      Attribute.DefaultTo<'Ninguno'>;
     estado: Attribute.Enumeration<['Cuidando', 'Hospitalizado', 'Adoptado']>;
     activo: Attribute.Boolean & Attribute.DefaultTo<true>;
+    refugio: Attribute.Relation<
+      'api::animal.animal',
+      'manyToOne',
+      'api::refugio.refugio'
+    >;
+    padecimientos: Attribute.JSON &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'Desnutrici\u00F3n',
+          'Par\u00E1sitos internos',
+          'Par\u00E1sitos externos',
+          'Enfermedades respiratorias',
+          'Problemas de piel',
+          'Problemas dentales',
+          'Traumas f\u00EDsicos',
+          'Enfermedades cr\u00F3nicas'
+        ]
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -861,7 +867,8 @@ export interface ApiNecesidadNecesidad extends Schema.CollectionType {
   info: {
     singularName: 'necesidad';
     pluralName: 'necesidades';
-    displayName: 'Mis Necesidades';
+    displayName: 'Necesidades';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -895,6 +902,7 @@ export interface ApiNecesidadNecesidad extends Schema.CollectionType {
       'manyToOne',
       'api::refugio.refugio'
     >;
+    creado: Attribute.Boolean & Attribute.DefaultTo<true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -918,7 +926,7 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
   info: {
     singularName: 'refugio';
     pluralName: 'refugios';
-    displayName: 'Mi Refugio';
+    displayName: 'Refugio';
   };
   options: {
     draftAndPublish: true;
@@ -970,6 +978,11 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
       'api::refugio.refugio',
       'oneToMany',
       'api::necesidad.necesidad'
+    >;
+    mascotas: Attribute.Relation<
+      'api::refugio.refugio',
+      'oneToMany',
+      'api::animal.animal'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
