@@ -32,6 +32,14 @@ npm run build
 yarn build
 ```
 
+### `migration`
+
+Migrate the data with the command
+
+`npm run strapi import -- -f ./database/migrations/export_20240521175449.tar.gz.enc `
+
+Decryption key: cuida
+
 ## ⚙️ Deployment
 
 Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
