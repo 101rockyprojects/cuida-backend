@@ -54,7 +54,8 @@
     },
     "fecha_ingreso": {
       "type": "date",
-      "required": false
+      "required": false,
+      "private": true
     },
     "esterilizado": {
       "type": "boolean",

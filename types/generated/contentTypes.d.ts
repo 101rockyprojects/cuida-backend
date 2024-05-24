@@ -817,7 +817,7 @@ export interface ApiAnimalAnimal extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 500;
       }>;
-    fecha_ingreso: Attribute.Date;
+    fecha_ingreso: Attribute.Date & Attribute.Private;
     esterilizado: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<true>;
@@ -881,6 +881,8 @@ export interface ApiNecesidadNecesidad extends Schema.CollectionType {
       }>;
     tipo: Attribute.Enumeration<['Alimento', 'Medicamento', 'Cirug\u00EDa']> &
       Attribute.Required;
+    fecha_inicio: Attribute.Date & Attribute.Required;
+    fecha_fin: Attribute.Date & Attribute.Required;
     descripcion: Attribute.Text &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -903,6 +905,11 @@ export interface ApiNecesidadNecesidad extends Schema.CollectionType {
       'api::refugio.refugio'
     >;
     creado: Attribute.Boolean & Attribute.DefaultTo<true>;
+    mascotas_beneficiadas: Attribute.Relation<
+      'api::necesidad.necesidad',
+      'oneToMany',
+      'api::animal.animal'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

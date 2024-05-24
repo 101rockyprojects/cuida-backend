@@ -26,6 +26,14 @@
       ],
       "required": true
     },
+    "fecha_inicio": {
+      "type": "date",
+      "required": true
+    },
+    "fecha_fin": {
+      "type": "date",
+      "required": true
+    },
     "descripcion": {
       "type": "text",
       "required": true,
@@ -62,6 +70,11 @@
     "creado": {
       "type": "boolean",
       "default": true
+    },
+    "mascotas_beneficiadas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::animal.animal"
     }
   }
 }
