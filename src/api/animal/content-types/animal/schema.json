@@ -44,12 +44,30 @@
       "required": true
     },
     "personalidad": {
-      "type": "string",
-      "maxLength": 100
+      "type": "customField",
+      "options": [
+        "Amigable",
+        "Solitario",
+        "Sociable",
+        "Tímido",
+        "Enérgico",
+        "Calmado",
+        "Tranquilo",
+        "Nervioso",
+        "Silencioso",
+        "Curioso",
+        "Juguetón",
+        "Serio",
+        "Cariñoso",
+        "Reservado",
+        "Protector"
+      ],
+      "required": true,
+      "customField": "plugin::multi-select.multi-select"
     },
     "historia": {
       "type": "text",
-      "required": false,
+      "required": true,
       "maxLength": 500
     },
     "fecha_ingreso": {
@@ -80,7 +98,9 @@
         "Cuidando",
         "Hospitalizado",
         "Adoptado"
-      ]
+      ],
+      "required": true,
+      "default": "Cuidando"
     },
     "activo": {
       "type": "boolean",

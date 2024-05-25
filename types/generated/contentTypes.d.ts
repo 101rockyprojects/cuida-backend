@@ -809,11 +809,30 @@ export interface ApiAnimalAnimal extends Schema.CollectionType {
     sexo: Attribute.Enumeration<['Masculino', 'Femenino']> & Attribute.Required;
     especie: Attribute.Enumeration<['Perro', 'Gato']> & Attribute.Required;
     peso: Attribute.Decimal & Attribute.Required;
-    personalidad: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        maxLength: 100;
-      }>;
+    personalidad: Attribute.JSON &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::multi-select.multi-select',
+        [
+          'Amigable',
+          'Solitario',
+          'Sociable',
+          'T\u00EDmido',
+          'En\u00E9rgico',
+          'Calmado',
+          'Tranquilo',
+          'Nervioso',
+          'Silencioso',
+          'Curioso',
+          'Juguet\u00F3n',
+          'Serio',
+          'Cari\u00F1oso',
+          'Reservado',
+          'Protector'
+        ]
+      >;
     historia: Attribute.Text &
+      Attribute.Required &
       Attribute.SetMinMaxLength<{
         maxLength: 500;
       }>;
@@ -823,7 +842,9 @@ export interface ApiAnimalAnimal extends Schema.CollectionType {
       Attribute.DefaultTo<true>;
     fotos: Attribute.Media & Attribute.Required;
     edad: Attribute.Integer;
-    estado: Attribute.Enumeration<['Cuidando', 'Hospitalizado', 'Adoptado']>;
+    estado: Attribute.Enumeration<['Cuidando', 'Hospitalizado', 'Adoptado']> &
+      Attribute.Required &
+      Attribute.DefaultTo<'Cuidando'>;
     activo: Attribute.Boolean & Attribute.DefaultTo<true>;
     refugio: Attribute.Relation<
       'api::animal.animal',
