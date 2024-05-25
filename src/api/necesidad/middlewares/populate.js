@@ -14,7 +14,7 @@ async function getBody(necesidades) {
       };
     } else {
       const total_mascotas_beneficiadas = necesidad.mascotas_beneficiadas.length
-      necesidad.mascotas_beneficiadas = {};
+      necesidad.mascotas_beneficiadas = [];
       return {
         ...necesidad,
         total_mascotas_beneficiadas

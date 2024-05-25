@@ -8,7 +8,7 @@ const query = require('./query');
 async function getBody(animales) {
   const data = await Promise.all(animales.map(async (animal) => {
     if (animal.padecimientos === null) {
-      animal.padecimientos = {};
+      animal.padecimientos = [];
     }
     return animal;
   }));
