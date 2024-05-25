@@ -3,6 +3,8 @@ const query = {
       'titulo',
       'tipo',
       'descripcion',
+      'fecha_inicio',
+      'fecha_fin',
       'meta_dinero',
       'estado'
     ],
@@ -22,6 +24,9 @@ const query = {
       }
     },
     populate: {
+        documento_soporte: {
+          fields: ['url']
+        },
         refugio: {
           fields: ['nombre', 'slug'],
           populate: {
@@ -29,6 +34,9 @@ const query = {
               fields: ['name', 'alternativeText', 'caption', 'url']
             }
           }
+        },
+        mascotas_beneficiadas: {
+          fields: ['nombre', 'slug']
         }
       }
   };

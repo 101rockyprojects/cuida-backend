@@ -14,20 +14,6 @@ module.exports = (config, { strapi }) => {
       if (necesidad.estado === 'Inactiva') {
         return ctx.badRequest('Esta necesidad no se encuentra activa')
       }
-      query.populate.documento_soporte = {
-        fields: ['url']
-      };
-      query.populate.mascotas_beneficiadas = {
-        fields: [
-          'nombre',
-          'slug',
-        ],
-        populate: {
-          fotos: {
-            fields: ['name', 'alternativeText', 'caption', 'url']
-          }
-        }
-      };
 
       ctx.query = query;
     }
