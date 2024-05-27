@@ -11,6 +11,9 @@ module.exports = (config, { strapi }) => {
     if (Object.keys(ctx.request.query).length === 0) {
       const id = ctx.params.id ? ctx.params.id : undefined;
       const necesidad = await strapi.entityService.findOne('api::necesidad.necesidad', id, query);
+      if (!necesidad) {
+        return ctx.notFound();
+      }
       if (necesidad.estado === 'Inactiva') {
         return ctx.badRequest('Esta necesidad no se encuentra activa')
       }

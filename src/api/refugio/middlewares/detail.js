@@ -27,6 +27,9 @@ module.exports = (config, { strapi }) => {
       }
 
       const refugio = await strapi.entityService.findOne('api::refugio.refugio', id, query);
+      if (!refugio) {
+        return ctx.notFound();
+      }
       if (!refugio.activo || !refugio.representante) {
         return ctx.badRequest('Este refugio no se encuentra activo')
       }
