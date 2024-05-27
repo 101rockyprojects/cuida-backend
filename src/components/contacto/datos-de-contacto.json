@@ -14,7 +14,7 @@
     },
     "numero": {
       "type": "string",
-      "regex": "^(?:\\+57)?3[0-9]{9}$",
+      "regex": "^3[0-9]{9}$",
       "required": true
     }
   }

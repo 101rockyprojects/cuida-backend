@@ -10,7 +10,7 @@
     "facebook": {
       "type": "string",
       "unique": false,
-      "regex": "^(https?://)?(www.|web.)?facebook.com/(([^/]+)|profile.php?id=(\\d+))$"
+      "regex": "^(https?://)?(www.|web.)?facebook.com/[^/?]+$"
     },
     "instagram": {
       "type": "string",
