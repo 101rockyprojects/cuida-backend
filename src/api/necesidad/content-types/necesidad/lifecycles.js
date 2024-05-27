@@ -1,5 +1,6 @@
 const { ValidationError } = require("@strapi/utils").errors;
 const { getRefugioByUser } = require('../../../services/refugio');
+const { isAdmin } = require('../../../services/isAdmin');
 
 function validateDates(fecha_inicio, fecha_fin) {
   const today = new Date().toISOString().substring(0, 10);
@@ -22,7 +23,8 @@ module.exports = {
       validateDates(data.fecha_inicio, data.fecha_fin);
       const userId = data.createdBy;
       const refugioId = await getRefugioByUser(userId);
-      if (!refugioId) {
+      const hasPermit = isAdmin();
+      if (!refugioId && !hasPermit) {
         throw new ValidationError('No se encontró un refugio asignado a este usuario');
       }
       if (data.mascotas_beneficiadas.connect.length === 0 && data.tipo === 'Cirugía') {
