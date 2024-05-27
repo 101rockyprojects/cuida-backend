@@ -21,7 +21,7 @@
     "bancolombia": {
       "type": "string",
       "unique": false,
-      "regex": "^\\d$",
+      "regex": "^\\d+$",
       "maxLength": 15
     },
     "paypal": {
