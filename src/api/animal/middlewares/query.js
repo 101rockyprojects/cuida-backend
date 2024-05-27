@@ -37,7 +37,11 @@ const query = {
               fields: ['name', 'alternativeText', 'caption', 'url']
             },
             representante: {
-              fields: ['num_contacto']
+              populate:{
+                datos_contacto: {
+                  fields: ['email', 'numero']
+                }
+              }
             }
           }
         }
