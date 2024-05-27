@@ -14,6 +14,9 @@ module.exports = (config, { strapi }) => {
       query.fields = query.fields.concat(['activo','servicios']);
       query.populate = {
         ...query.populate,
+        pasarelas: {
+          fields: ['nequi', 'daviplata', 'bancolombia', 'paypal']
+        },
         representante: {
           populate: {
             datos_contacto: {

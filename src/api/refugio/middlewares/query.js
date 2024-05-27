@@ -18,9 +18,6 @@ const query = {
         },
         redes: {
           fields: ['facebook', 'instagram']
-        },
-        pasarelas: {
-          fields: ['nequi', 'daviplata', 'bancolombia', 'paypal']
         }
     }
 }

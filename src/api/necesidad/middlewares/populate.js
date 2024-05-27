@@ -34,7 +34,6 @@ module.exports = (config, { strapi }) => {
       ctx.body = await getBody(necesidades);
     }
     if (Object.keys(ctx.request.query).length === 0) {
-      console.log(query.populate);
       const necesidades = await strapi.entityService.findMany('api::necesidad.necesidad', query);
       ctx.body = await getBody(necesidades);
     }

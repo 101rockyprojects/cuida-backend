@@ -8,8 +8,7 @@ const { objectToArray } = require('../../services/ArrayParse');
 
 async function getBody(refugios) {
   const data = await Promise.all(refugios.map(async (refugio) => {
-    refugio.redes = objectToArray(refugio.redes, 'redSocial', 'url');
-    refugio.pasarelas = objectToArray(refugio.pasarelas, 'metodo', 'numCuenta');
+    const redes = objectToArray(refugio.redes, 'redSocial', 'url');
     
     const [mascotas, total_mascotas] = await strapi.db.query('api::animal.animal').findWithCount({
       where: {
@@ -20,8 +19,11 @@ async function getBody(refugios) {
     const total_perros = mascotas.filter(mascota => mascota.especie === 'Perro').length;
     const total_gatos = mascotas.filter(mascota => mascota.especie === 'Gato').length;
 
+    delete refugio.representante;
+
     return {
       ...refugio,
+      redes,
       total_mascotas,
       total_perros,
       total_gatos
