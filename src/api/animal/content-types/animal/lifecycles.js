@@ -15,6 +15,11 @@ module.exports = {
     },
     async beforeUpdate(event) {
         const { data, where } = event.params;
+        data.fotos.forEach(foto => {
+          if (!foto.alternativeText) {
+            throw new ValidationError('Por favor agrega un texto alternativo a todas las fotos');
+          }
+        });
         const id = where.id;
         const existingData = await strapi.entityService.findOne("api::animal.animal", id);
         if (existingData.nombre !== data.nombre) {
