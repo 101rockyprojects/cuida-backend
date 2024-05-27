@@ -14,7 +14,11 @@ module.exports = {
       data.refugio = { connect: refugioId };
     },
     async beforeUpdate(event) {
-        const {data} = event.params;
-        data.slug = await generateSlug("api::animal.animal", data);
+        const { data, where } = event.params;
+        const id = where.id;
+        const existingData = await strapi.entityService.findOne("api::animal.animal", id);
+        if (existingData.nombre !== data.nombre) {
+          data.slug = await generateSlug("api::animal.animal", data);
+        }
     }
   }
