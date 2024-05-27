@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_contacto_datos_de_contactos",
+  "info": {
+    "displayName": "Datos de contacto",
+    "icon": "information",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "string",
+      "required": true,
+      "regex": "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}"
+    },
+    "numero": {
+      "type": "string",
+      "regex": "^(?:\\+57)?3[0-9]{9}$",
+      "required": true
+    }
+  }
+}

@@ -3,8 +3,6 @@ const query = {
       'nombre',
       'slug',
       'descripcion',
-      'link_facebook',
-      'link_instagram',
     ],
     filters: {
       activo: 'true',
@@ -18,8 +16,11 @@ const query = {
         logo: {
           fields: ['name', 'alternativeText', 'caption', 'url']
         },
-        representante: {
-          fields: ['nombre', 'num_contacto']
+        redes: {
+          fields: ['facebook', 'instagram']
+        },
+        pasarelas: {
+          fields: ['nequi', 'daviplata', 'bancolombia', 'paypal']
         }
     }
 }

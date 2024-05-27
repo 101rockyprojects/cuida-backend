@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_pasarelas_pasarelas_para_donaciones",
+  "info": {
+    "displayName": "Pasarelas para donación",
+    "icon": "manyWays",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "nequi": {
+      "type": "string",
+      "unique": false,
+      "regex": "^\\d{10}$"
+    },
+    "daviplata": {
+      "type": "string",
+      "required": false,
+      "unique": false,
+      "regex": "^\\d{10}$"
+    },
+    "bancolombia": {
+      "type": "string",
+      "unique": false,
+      "regex": "^\\d$",
+      "maxLength": 15
+    },
+    "paypal": {
+      "type": "string",
+      "unique": false,
+      "regex": "^(https?://)?(www.)?paypal.(com/paypalme|me)/[a-zA-Z0-9]+$"
+    }
+  }
+}

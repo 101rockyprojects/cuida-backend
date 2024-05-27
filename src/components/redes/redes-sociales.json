@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_redes_redes_sociales",
+  "info": {
+    "displayName": "Redes sociales",
+    "icon": "link",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "facebook": {
+      "type": "string",
+      "unique": false,
+      "regex": "^(https?://)?(www.|web.)?facebook.com/(([^/]+)|profile.php?id=(\\d+))$"
+    },
+    "instagram": {
+      "type": "string",
+      "unique": false,
+      "regex": "^(https?://)?(www.)?instagram.com/([a-zA-Z0-9_]{1,30})/?$"
+    }
+  }
+}

@@ -955,6 +955,7 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
     singularName: 'refugio';
     pluralName: 'refugios';
     displayName: 'Refugio';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -982,20 +983,6 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
     fecha_fundacion: Attribute.Date & Attribute.Required & Attribute.Private;
     logo: Attribute.Media & Attribute.Required;
     fotos: Attribute.Media;
-    nequi: Attribute.String &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 10;
-        maxLength: 10;
-      }>;
-    daviplata: Attribute.String &
-      Attribute.SetMinMaxLength<{
-        minLength: 10;
-        maxLength: 10;
-      }>;
-    paypal: Attribute.String & Attribute.Unique;
-    link_facebook: Attribute.String & Attribute.Unique;
-    link_instagram: Attribute.String & Attribute.Unique;
     activo: Attribute.Boolean & Attribute.DefaultTo<true>;
     representante: Attribute.Relation<
       'api::refugio.refugio',
@@ -1012,6 +999,8 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
       'oneToMany',
       'api::animal.animal'
     >;
+    pasarelas: Attribute.Component<'pasarelas.pasarelas-para-donacion'>;
+    redes: Attribute.Component<'redes.redes-sociales'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1049,25 +1038,24 @@ export interface ApiRepresentanteRepresentante extends Schema.CollectionType {
       }>;
     tipo_documento: Attribute.Enumeration<
       [
-        '(CC) C\u00E9dula de ciudadan\u00EDa',
-        '(CE) C\u00E9dula de extranjer\u00EDa',
-        '(NI) N\u00FAmero de Identificaci\u00F3n Tributaria'
+        'CC - C\u00E9dula de ciudadan\u00EDa',
+        'CE - C\u00E9dula de extranjer\u00EDa',
+        'NI - N\u00FAmero de Identificaci\u00F3n Tributaria'
       ]
     > &
-      Attribute.Required;
-    documento_identidad: Attribute.String &
       Attribute.Required &
+      Attribute.Private;
+    num_documento: Attribute.String &
+      Attribute.Required &
+      Attribute.Private &
       Attribute.Unique &
       Attribute.SetMinMaxLength<{
         maxLength: 15;
       }>;
-    num_contacto: Attribute.String &
+    numero_celular: Attribute.String &
       Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        minLength: 10;
-        maxLength: 10;
-      }>;
+      Attribute.Private &
+      Attribute.Unique;
     refugio: Attribute.Relation<
       'api::representante.representante',
       'oneToOne',
@@ -1083,6 +1071,8 @@ export interface ApiRepresentanteRepresentante extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    datos_contacto: Attribute.Component<'contacto.datos-de-contacto'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

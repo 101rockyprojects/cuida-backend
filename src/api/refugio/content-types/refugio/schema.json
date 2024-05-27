@@ -4,7 +4,8 @@
   "info": {
     "singularName": "refugio",
     "pluralName": "refugios",
-    "displayName": "Refugio"
+    "displayName": "Refugio",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -64,33 +65,6 @@
         "images"
       ]
     },
-    "nequi": {
-      "type": "string",
-      "required": false,
-      "unique": true,
-      "regex": "3[0-9]{9}",
-      "maxLength": 10,
-      "minLength": 10
-    },
-    "daviplata": {
-      "type": "string",
-      "regex": "3[0-9]{9}",
-      "maxLength": 10,
-      "minLength": 10
-    },
-    "paypal": {
-      "type": "string",
-      "required": false,
-      "unique": true
-    },
-    "link_facebook": {
-      "type": "string",
-      "unique": true
-    },
-    "link_instagram": {
-      "type": "string",
-      "unique": true
-    },
     "activo": {
       "type": "boolean",
       "default": true
@@ -112,6 +86,16 @@
       "relation": "oneToMany",
       "target": "api::animal.animal",
       "mappedBy": "refugio"
+    },
+    "pasarelas": {
+      "type": "component",
+      "repeatable": false,
+      "component": "pasarelas.pasarelas-para-donacion"
+    },
+    "redes": {
+      "type": "component",
+      "repeatable": false,
+      "component": "redes.redes-sociales"
     }
   }
 }

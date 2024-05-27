@@ -21,26 +21,27 @@
     "tipo_documento": {
       "type": "enumeration",
       "enum": [
-        "(CC) Cédula de ciudadanía",
-        "(CE) Cédula de extranjería",
-        "(NI) Número de Identificación Tributaria"
+        "CC - Cédula de ciudadanía",
+        "CE - Cédula de extranjería",
+        "NI - Número de Identificación Tributaria"
       ],
-      "required": true
+      "required": true,
+      "private": true
     },
-    "documento_identidad": {
+    "num_documento": {
       "type": "string",
       "required": true,
       "maxLength": 15,
       "unique": true,
-      "regex": "^[0-9]+$"
+      "regex": "^[0-9]+$",
+      "private": true
     },
-    "num_contacto": {
+    "numero_celular": {
       "type": "string",
       "required": true,
-      "maxLength": 10,
-      "minLength": 10,
       "unique": true,
-      "regex": "3[0-9]{9}"
+      "regex": "^(?:\\+57)?3[0-9]{9}$",
+      "private": true
     },
     "refugio": {
       "type": "relation",
@@ -57,6 +58,13 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "datos_contacto": {
+      "displayName": "Datos de contacto",
+      "type": "component",
+      "repeatable": false,
+      "component": "contacto.datos-de-contacto",
+      "required": true
     }
   }
 }
