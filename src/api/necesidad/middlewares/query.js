@@ -36,7 +36,12 @@ const query = {
           }
         },
         mascotas_beneficiadas: {
-          fields: ['nombre', 'slug']
+          fields: ['nombre', 'slug'],
+          populate: {
+            fotos: {
+              fields: ['name', 'alternativeText', 'caption', 'url']
+            }
+          }
         }
       }
   };
