@@ -14,6 +14,9 @@ module.exports = (config, { strapi }) => {
       query.fields = query.fields.concat(['activo','servicios']);
       query.populate = {
         ...query.populate,
+        fotos: {
+          fields: ['name', 'alternativeText', 'caption', 'url']
+        },
         pasarelas: {
           fields: ['nequi', 'daviplata', 'bancolombia', 'paypal']
         },
@@ -32,6 +35,9 @@ module.exports = (config, { strapi }) => {
       }
       if (!refugio.activo || !refugio.representante) {
         return ctx.badRequest('Este refugio no se encuentra activo')
+      }
+      if (!refugio.fotos) {
+        refugio.fotos = [];
       }
 
       const email = refugio.representante.datos_contacto.email;
