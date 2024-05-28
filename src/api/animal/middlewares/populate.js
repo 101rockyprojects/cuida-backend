@@ -6,25 +6,35 @@ const query = require('./query');
  */
 
 async function getBody(animales) {
-  const data = await Promise.all(animales.map(async (animal) => {
+  const data = await Promise.all(animales.results.map(async (animal) => {
     if (animal.padecimientos === null) {
       animal.padecimientos = [];
     }
     return animal;
   }));
-  return { data };
+
+  const pagination = animales.pagination;
+
+  return { data, pagination };
 }
 
 module.exports = (config, { strapi }) => {
   // Add your own logic here.
   return async (ctx, next) => {
-    if (ctx.request.query.filters && ctx.request.query.filters.refugio && ctx.request.query.filters.refugio.id) {
-      query.filters.refugio.id.$eq = ctx.request.query.filters.refugio.id;
-      const animales = await strapi.entityService.findMany('api::animal.animal', query);
-      ctx.body = await getBody(animales);
-    }
+    const { page, pageSize } = ctx.query?.pagination || {
+      page: 1,
+      pageSize: 6
+    };
+
     if (Object.keys(ctx.request.query).length === 0) {
-      const animales = await strapi.entityService.findMany('api::animal.animal', query);
+      const animales = await strapi.entityService.findPage('api::animal.animal', {...query, page, pageSize });
+      ctx.body = await getBody(animales);
+    } else {
+      if (ctx.request.query.filters && ctx.request.query.filters.refugio && ctx.request.query.filters.refugio.id) {
+        query.filters.refugio.id.$eq = ctx.request.query.filters.refugio.id;
+      }
+
+      const animales = await strapi.entityService.findPage('api::animal.animal', {...query, page, pageSize });
       ctx.body = await getBody(animales);
     }
     
