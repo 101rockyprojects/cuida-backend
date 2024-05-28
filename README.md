@@ -36,9 +36,7 @@ yarn build
 
 Migrate the data with the command
 
-`npm run strapi import -- -f ./database/migrations/export_20240521175449.tar.gz.enc `
-
-Decryption key: cuida
+`npm run strapi import -- -f ./database/migrations/export_20240527181719.tar.gz.enc --key cuida`
 
 ## ⚙️ Deployment
 
