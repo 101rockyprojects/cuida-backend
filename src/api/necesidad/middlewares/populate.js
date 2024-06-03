@@ -6,7 +6,7 @@ const query = require('./query');
  */
 
 async function getBody(necesidades) {
-  const data = await Promise.all(necesidades.results.map(async (necesidad) => {
+  const needs = await Promise.all(necesidades.results.map(async (necesidad) => {
     if (necesidad.tipo === 'Cirugía') {
       return {
         ...necesidad,
@@ -21,6 +21,9 @@ async function getBody(necesidades) {
       };
     }
   }));
+
+  const today = new Date().toISOString().substring(0, 10);
+  const data = needs.filter(necesidad => necesidad.fecha_fin >= today);
 
   const pagination = necesidades.pagination;
 
