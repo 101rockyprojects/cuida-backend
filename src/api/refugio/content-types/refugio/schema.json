@@ -16,7 +16,7 @@
       "type": "string",
       "required": true,
       "unique": true,
-      "regex": "^[a-zA-Z\\s.]*$",
+      "regex": "^[a-zA-ZáéíóúÁÉÍÓÚ\\s.]*$",
       "maxLength": 80
     },
     "slug": {

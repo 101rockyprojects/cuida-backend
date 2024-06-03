@@ -15,7 +15,8 @@
     "titulo": {
       "type": "string",
       "maxLength": 100,
-      "required": true
+      "required": true,
+      "regex": "^[a-zA-ZáéíóúÁÉÍÓÚ\\s.:]*$"
     },
     "tipo": {
       "type": "enumeration",

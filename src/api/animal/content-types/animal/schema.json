@@ -16,7 +16,7 @@
       "type": "string",
       "required": true,
       "maxLength": 50,
-      "regex": "^[a-zA-Z\\s.]*$"
+      "regex": "^[a-zA-ZáéíóúÁÉÍÓÚ\\s.]*$"
     },
     "slug": {
       "type": "uid",

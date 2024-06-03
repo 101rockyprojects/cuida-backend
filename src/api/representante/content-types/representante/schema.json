@@ -15,7 +15,7 @@
     "nombre": {
       "type": "string",
       "required": true,
-      "regex": "^[a-zA-Z\\s]*$",
+      "regex": "^[a-zA-ZáéíóúÁÉÍÓÚ\\s]*$",
       "maxLength": 80
     },
     "tipo_documento": {
