@@ -982,7 +982,7 @@ export interface ApiRefugioRefugio extends Schema.CollectionType {
     direccion: Attribute.String & Attribute.Required & Attribute.Unique;
     fecha_fundacion: Attribute.Date & Attribute.Required & Attribute.Private;
     logo: Attribute.Media & Attribute.Required;
-    fotos: Attribute.Media;
+    fotos: Attribute.Media & Attribute.Required;
     activo: Attribute.Boolean & Attribute.DefaultTo<true>;
     representante: Attribute.Relation<
       'api::refugio.refugio',
