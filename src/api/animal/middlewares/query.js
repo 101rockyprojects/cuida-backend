@@ -18,10 +18,12 @@ const query = {
         id: {
           $notNull: true,
         },
-        representante: {
-          id: {
-            $notNull: true
-          }
+        populate: {
+          representante: {
+            id: {
+              $notNull: true
+            }
+          },
         },
         activo: 'true',
       }
