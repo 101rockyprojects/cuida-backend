@@ -7,10 +7,12 @@ module.exports = {
     },
     async beforeUpdate(event) {
       const { data, where } = event.params;
-      const id = where.id;
-      const existingData = await strapi.entityService.findOne("api::refugio.refugio", id);
-      if (existingData.nombre !== data.nombre) {
-        data.slug = await generateSlug("api::refugio.refugio", data);
+      if (Object.keys(data).length !== 3) {
+        const id = where.id;
+        const existingData = await strapi.entityService.findOne("api::refugio.refugio", id);
+        if (existingData.nombre !== data.nombre) {
+          data.slug = await generateSlug("api::refugio.refugio", data);
+        }
       }
     }
   }
