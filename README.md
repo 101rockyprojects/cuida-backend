@@ -38,6 +38,8 @@ Migrate the data with the command
 
 `npm run strapi import -- -f ./database/migrations/export_20240527181719.tar.gz.enc --key cuida`
 
+In case of error, check out lifecycles 👀
+
 ## ⚙️ Deployment
 
 Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
