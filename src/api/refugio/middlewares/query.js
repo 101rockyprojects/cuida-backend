@@ -19,7 +19,10 @@ const query = {
         redes: {
           fields: ['facebook', 'instagram']
         }
-    }
+    },
+    sort: {
+      updatedAt: 'desc'
+    },
 }
 
 module.exports = query;

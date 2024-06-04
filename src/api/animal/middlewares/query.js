@@ -47,7 +47,10 @@ const query = {
             }
           }
         }
-      }
+      },
+      sort: {
+        updatedAt: 'desc'
+      },
   };
 
 module.exports = query;
