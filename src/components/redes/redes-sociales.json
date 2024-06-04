@@ -10,12 +10,12 @@
     "facebook": {
       "type": "string",
       "unique": false,
-      "regex": "^(https?://)?(www.|web.)?facebook.com/[^/?]+$"
+      "regex": "^https://(?:www|web).facebook.com/[^/?]+/?$"
     },
     "instagram": {
       "type": "string",
       "unique": false,
-      "regex": "^(https?://)?(www.)?instagram.com/([a-zA-Z0-9_]{1,30})/?$"
+      "regex": "^https://www.instagram.com/([a-zA-Z0-9_]{1,30})/?$"
     }
   }
 }
