@@ -1,5 +1,6 @@
 'use strict';
-const query = require('./query');
+const baseQuery = require('./query');
+const { getQuery } = require('./../../services/sanitize');
 
 /**
  * `populate` middleware
@@ -37,6 +38,8 @@ module.exports = (config, { strapi }) => {
       page: 1,
       pageSize: 6
     };
+
+    const query = getQuery(baseQuery);
 
     if (Object.keys(ctx.request.query).length === 0) {
       const necesidades = await strapi.entityService.findPage('api::necesidad.necesidad', {...query, page, pageSize });
